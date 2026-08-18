@@ -31,9 +31,9 @@ Use CLI commands to partition/join UCLA-ROMS netCDF files:
 roms-part NP_XI NP_ETA file1.nc [file2.nc ...] --n-workers N --output-dir DIR
 ```
 where `N` can range up to ~24 if sufficient cores/memory is available,
-and gains can still be realized.  `NP_XI` and `NP_ETA` are integers describing
-the tiling, `DIR` is and (optional) output directory where tiled files
-will be written
+and gains can still be realized.  `NP_XI` and `NP_ETA` are integers
+describing the tiling, `DIR` is an (optional) output directory where
+tiled files will be created.
 
 ### Join
 ```bash
