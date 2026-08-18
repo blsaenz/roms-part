@@ -1,7 +1,7 @@
 # roms-part
 
 Fast, parallel Python replacements for two [UCLA-ROMS](https://github.com/CESR-lab/ucla-roms)
-netCDF domain-decomposition tools:
+netCDF (serial) domain-decomposition tools:
 
 - **`roms-part`** replaces `Tools-Roms/partit.F` -- splits a whole-domain
   ROMS netCDF file (grid/forcing/initial-condition/boundary) into
@@ -9,6 +9,10 @@ netCDF domain-decomposition tools:
 - **`roms-join`** replaces `Tools-Roms/ncjoin.F` (and, for the scaling
   problem it solves, competes with the MPI-parallel `ncjoin_mpi.F`) --
   joins those tiles back into one whole-domain, compressed netCDF file.
+
+MPI-parallel FORTRAN partition/join tools do exist but under many
+circumstances are difficult to comile and use.  This python package
+attempts similar functionality with easier setup.
 
 ## Install
 
@@ -22,7 +26,7 @@ Requires Python >=3.12, `netCDF4`, `numpy`, `h5py`.
 
 Use CLI commands to partition/join UCLA-ROMS netCDF files:
 
-# Partition
+### Partition
 ```bash
 roms-part NP_XI NP_ETA file1.nc [file2.nc ...] --n-workers N --output-dir DIR
 ```
@@ -31,7 +35,7 @@ and gains can still be realized.  `NP_XI` and `NP_ETA` are integers describing
 the tiling, `DIR` is and (optional) output directory where tiled files
 will be written
 
-# Join
+### Join
 ```bash
 roms-join file1.*.nc [file2.*.nc] ... --n-workers N --output OUTFILE
 ```
