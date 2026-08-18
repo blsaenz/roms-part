@@ -1,0 +1,62 @@
+[project]
+name = "roms-part"
+description = "Fast, parallel Python replacement for UCLA-ROMS's partit netCDF domain-decomposition tool"
+readme = "README.md"
+authors = [
+    {name = "Ben Saenz", email = "ben.saenz@cworthy.org"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.12"
+dependencies = [
+    "netCDF4>=1.6",
+    "numpy>=1.24",
+    "h5py>=3.6",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+    "xarray",
+]
+
+[project.scripts]
+roms-part = "roms_part.cli:main"
+roms-join = "roms_part.join_cli:main"
+
+[project.urls]
+Home = "https://github.com/blsaenz/roms-part"
+
+[build-system]
+requires = [
+    "setuptools>=61.0.0",
+    "wheel",
+    "setuptools_scm[toml]>=8.0",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
+
+[tool.setuptools.packages.find]
+include = ["roms_part*"]
+exclude = ["tests", "tests.*", "benchmarks", "benchmarks.*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+fix = true
+line-length = 100
+
+[tool.ruff.lint]
+extend-select = ["I", "E", "W", "F", "UP"]
+ignore = ["E501"]
