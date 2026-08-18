@@ -39,11 +39,11 @@ will be written
 ```bash
 roms-join file1.*.nc [file2.*.nc] ... --n-workers N --output OUTFILE
 ```
-where `N` can range up to 8 cores are available, although tests showed
+where `N` can range up to 8 cores, if available, although tests showed
 that gains using more than 4 cores may not be significant (joining
 is a less-parallelizable process than partitioning under most
 filesystems). `*` is a wildcard representing the typical MPI tile index
-individual tiled netCDF files, and `OUTFILE` is the joined output netCDF
+of individual netCDF files, and `OUTFILE` is the joined output netCDF
 file.
 
 NOTE: the wildcard `*` expansion happens at the shell level. This is
